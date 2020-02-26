@@ -118,5 +118,8 @@
       }
     }
   },
-  "defaultProject": "my-po-project"
+  "defaultProject": "my-po-project",
+  "cli": {
+    "analytics": "111d6b47-4aea-41c8-91d5-b6004807ca1c"
+  }
 }

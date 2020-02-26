@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
-
-import { PoMenuItem } from '@portinari/portinari-ui';
+import { Component, OnInit } from '@angular/core';
+import { SampleItemsService } from './sample-items.service';
+import { PoTableColumn } from '@portinari/portinari-ui';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ SampleItemsService ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) }
-  ];
+  columns: Array<PoTableColumn>;
+  items: Array<any>;
 
-  private onClick() {
-    alert('Clicked in menu item')
+  constructor( private service: SampleItemsService ) { }
+
+  ngOnInit() {
+    this.columns = this.service.getColumns();
+    this.items = this.service.getItems();
   }
 
 }

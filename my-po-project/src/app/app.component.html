@@ -1,9 +1,38 @@
-<div class="po-wrapper">
-  <po-toolbar p-title="AppName"></po-toolbar>
+<div class="po-row">
+  <div class="po-xl-4 po-lg-4 po-md-4 po-sm-4"></div>
+  <div class="po-xl-4 po-lg-4 po-md-4 po-sm-4">
+    <po-page-default>
+      <br>
+      <br>
+      <h1 class="po-text-center"> Previsão do Tempo </h1>
+      <br>
+      <br>
+      <po-lookup
+        name="lookup"
+        p-field-label="label"
+        p-field-value="value"
+        p-filter-service="https://thf.totvs.com.br/sample/api/new/heroes?fields=id,name,nickname,email"
+        p-placeholder="Insira aqui o nome da cidade">
+      </po-lookup>
+      <br>
+      <hr>
 
-  <po-menu [p-menus]="menus"></po-menu>
-
-  <po-page-default p-title="AppName">
-    <p> AppName page </p>
-  </po-page-default>
+      <div class="po-row">
+        <div class="po-xl-2 po-lg-2 po-md-2 po-sm-2"></div>
+        <div class="po-xl-8 po-lg-8 po-md-8 po-sm-8">
+          <h2> Capitais </h2>
+          <br>
+          <!-- <div class="po-xl-12 po-lg-12 po-md-12 po-sm-12"> -->
+            <po-table
+              [p-columns]="columns"
+              [p-items]="items"
+              [p-striped]="true">
+            </po-table>
+          <!-- </div> -->
+        </div>
+        <div class="po-xl-2 po-lg-2 po-md-2 po-sm-2"></div>
+      </div>
+    </po-page-default>
+  </div>
+  <div class="po-xl-4 po-lg-4 po-md-4 po-sm-4"></div>
 </div>
