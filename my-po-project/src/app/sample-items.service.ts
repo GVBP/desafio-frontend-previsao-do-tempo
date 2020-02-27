@@ -1,7 +1,37 @@
 import { Injectable } from '@angular/core';
 import { PoTableColumn } from '@portinari/portinari-ui';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { createHmac, Hmac, HexBase64Latin1Encoding } from '@types/node/index';
+var OAuth = require('oauth');
+
+var header = {
+    "X-Yahoo-App-Id": "your-app-id"
+};
+
+var request = new OAuth.OAuth(
+    null,
+    null,
+    'your-consumer-key',
+    'your-consumer-secret',
+    '1.0',
+    null,
+    'HMAC-SHA1',
+    null,
+    header
+);
+
+request.get(
+    'https://weather-ydn-yql.media.yahoo.com/forecastrss?format=json',
+    null,
+    null,
+    function (err, data, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+        }
+    }
+);
 
 @Injectable()
 export class SampleItemsService {
@@ -9,13 +39,14 @@ export class SampleItemsService {
     private apiUrl = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     data: any = {};
     config: Config;
-    hmac: Hmac;
-    base64: HexBase64Latin1Encoding;
 
-    constructor(private http: HttpClient) {
-        this.getForecastrss();
-        this.getData();
-    }
+    //constructor() {
+        //this.getForecastrss();
+        //this.getData();
+    //}
+
+    //hmac: Hmac;
+    //base64: HexBase64Latin1Encoding;
     
     getColumns(): Array<PoTableColumn> {
         return [
@@ -35,7 +66,7 @@ export class SampleItemsService {
         ];
     }
 
-    getData() {
+    /*getData() {
         var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
         var method = 'GET';
         var app_id = 'your-app-id';
@@ -74,12 +105,12 @@ export class SampleItemsService {
               'X-Yahoo-App-Id': app_id,
             })
           });
-    }
+    }*/
 
-    getForecastrss() {
+    /*getForecastrss() {
         this.getData()
             .subscribe((data: Config) => this.config = { ...data });
-    }
+    }*/
 
 }
 
