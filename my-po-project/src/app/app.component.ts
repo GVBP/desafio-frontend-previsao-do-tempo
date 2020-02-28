@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.columns = this.service.getColumns();
     this.items = this.service.getItems();
+    console.log(this.service.getAll());
   }
 
 }
